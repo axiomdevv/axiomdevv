@@ -34,6 +34,6 @@ jobs:
           git config user.name "contrib-runner[bot]"
           git config user.email "actions@users.noreply.github.com"
           git checkout -q -b output
-          git add contrib-runner.svg contrib-runner-dark.svg
+          git add *.svg
           git commit -q -m "Update contribution runner"
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output
