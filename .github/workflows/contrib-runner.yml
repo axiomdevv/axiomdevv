@@ -1,0 +1,39 @@
+name: Contribution Runner
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # every day at 03:00 UTC
+  workflow_dispatch:       # lets you run it by hand from the Actions tab
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate the animated SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p dist
+          node generate.mjs ${{ github.repository_owner }} dist/contrib-runner.svg
+
+      - name: Push to the output branch
+        run: |
+          cd dist
+          git init -q
+          git config user.name "contrib-runner[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -q -b output
+          git add contrib-runner.svg contrib-runner-dark.svg
+          git commit -q -m "Update contribution runner"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output
