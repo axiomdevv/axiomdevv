@@ -19,7 +19,4 @@ Here are some ideas to get you started:
   <img src="assets/banner.gif" width="100%" alt="Animated infinity banner" />
 </p> 
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/axiomdevv/axiomdevv/output/contrib-runner-dark.svg">
-  <img alt="contribution graph with a character jumping on the blocks" src="https://raw.githubusercontent.com/axiomdevv/axiomdevv/output/contrib-runner.svg">
-</picture>
+<img alt="stormy contribution graph, lightning striking the blocks" src="https://raw.githubusercontent.com/axiomdevv/axiomdevv/output/contrib-storm.svg" width="100%">
